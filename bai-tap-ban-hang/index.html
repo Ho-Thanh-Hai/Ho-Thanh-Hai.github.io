@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Shop Haifish</title>
+  <link rel="stylesheet" href="banhang.css">
+</head>
+<body>
+  <header>
+    <a class="logo" href="#">
+      <div class="mark">SH</div>
+     Shop Haifish
+    </a>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="info">
+        <h1>Chào mừng đến với cửa hàng</h1>
+        <p>Những sản phẩm chọn lọc, giao hàng nhanh. Tìm kiếm sản phẩm bạn cần bên dưới.</p>
+        <div class="search">
+          <input id="searchInput" type="text" placeholder="Tìm kiếm sản phẩm..." />
+          <button id="searchBtn">Tìm</button>
+        </div>
+      </div>
+      <div class="promo">
+        <div class="promo-card">
+          <strong>Ưu đãi</strong>
+          <p>Giảm 10% cho đơn hàng đầu tiên</p>
+          <button class="btn">Mua ngay</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Sản phẩm nổi bật</h2>
+      <div class="grid" id="productGrid">
+        <div class="card">
+          <img src="tainghekoday.jpg" alt="Tai nghe không dây" class="product-img">
+          <div>
+            <p class="title">Tai nghe không dây</p>
+            <p class="desc">Âm thanh rõ, pin lâu</p>
+          </div>
+          <div class="price-row">
+            <div class="price">₫799.000</div>
+            <button class="btn add-btn">Thêm</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="Loabluetooh.jpg" alt="Loa Bluetooth" class="product-img">
+          <div>
+            <p class="title">Loa Bluetooth</p>
+            <p class="desc">Công suất mạnh, bass tốt</p>
+          </div>
+          <div class="price-row">
+            <div class="price">₫1.299.000</div>
+            <button class="btn add-btn">Thêm</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="Sacduphong.jpg" alt="Sạc dự phòng" class="product-img">
+          <div>
+            <p class="title">Sạc dự phòng 20.000mAh</p>
+            <p class="desc">Sạc nhanh, nhẹ</p>
+          </div>
+          <div class="price-row">
+            <div class="price">₫499.000</div>
+            <button class="btn add-btn">Thêm</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="opdt.jpg" alt="Ốp lưng điện thoại" class="product-img">
+          <div>
+            <p class="title">Ốp lưng điện thoại</p>
+            <p class="desc">Chống sốc, thiết kế mỏng</p>
+          </div>
+          <div class="price-row">
+            <div class="price">₫50.000</div>
+            <button class="btn add-btn">Thêm</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+  // Tìm kiếm sản phẩm theo tên
+  const searchBtn = document.getElementById('searchBtn');
+  const searchInput = document.getElementById('searchInput');
+  const cards = document.querySelectorAll('#productGrid .card');
+
+  searchBtn.addEventListener('click', function () {
+    let keyword = searchInput.value.toLowerCase().trim();
+
+    cards.forEach(function (card) {
+      let name = card.querySelector('.title').textContent.toLowerCase();
+      if (name.includes(keyword) || keyword === '') {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+
+  // Bấm nút Enter cũng tìm
+  searchInput.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      searchBtn.click();
+    }
+  });
+
+  // Nút thêm sản phẩm
+  const addBtns = document.querySelectorAll('.add-btn');
+  addBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      let productName = this.closest('.card').querySelector('.title').textContent;
+      alert('Đã thêm: ' + productName);
+    });
+  });
+</script>
+</body>
+</html>

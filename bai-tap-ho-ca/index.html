@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hồ cá vui nhộn</title>
+    <link rel="stylesheet" href="hoca.css">
+</head>
+<body>
+  <!-- Ocean background (sẽ nằm phía sau nội dung) -->
+  <div class="ocean-bg" aria-hidden="true">
+    <div class="light-rays"></div>
+    <div class="bubbles" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <div class="seabed"></div>
+  </div>
+  <div id="content">
+    <div id="fish"><img src="goldFishSchool.png" alt="fish" class="entity"></div>
+    <div id="fish1"><img src="goldFishSchool.png" alt="fish1" class="entity"></div>
+    <div id="fish2"><img src="goldFishSchool.png" alt="fish2" class="entity"></div>
+    <div id="fish3"><img src="goldFishSchool.png" alt="fish3" class="entity"></div>
+    <div id="fish4"><img src="goldFishSchool.png" alt="fish4" class="entity"></div>
+    <div id="fish5"><img src="goldFishSchool.png" alt="fish5" class="entity"></div>
+
+    <div id="diver1"><img src="diver1.png" alt="diver1" class="entity"></div>
+    <div id="diver2"><img src="diver2.png" alt="diver2" class="entity"></div>
+    <div id="diver3"><img src="diver3.png" alt="diver3" class="entity"></div>
+
+    <div id="shark"><img src="shark.png" alt="shark" class="entity"></div>
+    <div id="turtle"><img src="turtle.png" alt="turtle" class="entity"></div>
+  </div>
+
+  <script>
+    (function(){
+      var content = document.getElementById('content');
+      var paused = false;
+      content.addEventListener('dblclick', function(){
+        paused = !paused;
+        document.body.classList.toggle('paused', paused);
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;background:#0b2540}
+img{display:block;max-width:100%}
+
+.ocean-bg{
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background-image:
+    linear-gradient(180deg, rgba(4,25,45,0.55), rgba(2,10,22,0.9)),
+    url("underwater.png");
+  background-size:cover;
+  background-position:center 30%;
+  filter:contrast(1.02) saturate(1.05);
+}
+
+@media (prefers-reduced-motion: no-preference){
+  .ocean-bg{animation:bgFloat 30s linear infinite}
+  @keyframes bgFloat{
+    0%{transform:translateY(0) scale(1.02)}
+    50%{transform:translateY(-18px) scale(1.03)}
+    100%{transform:translateY(0) scale(1.02)}
+  }
+}
+
+.light-rays{
+  position:absolute; inset: -10% 0 15%;
+  background:
+    radial-gradient(ellipse at 10% 0%, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0) 28%),
+    radial-gradient(ellipse at 70% 5%, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 26%);
+  mix-blend-mode:screen; opacity:0.9; transform:rotate(-6deg);
+}
+
+.seabed{
+  position:absolute; left:0; right:0; bottom:0;
+  height:160px;
+  background:
+    linear-gradient(180deg, rgba(2,10,30,0) 0%, rgba(2,8,22,0.35) 30%, rgba(2,6,18,0.9) 100%),
+    url("images/seabed.png");
+  background-size:cover;
+  background-position:center bottom;
+  z-index:2;
+  box-shadow: inset 0 10px 80px rgba(2,6,18,0.6);
+}
+
+.bubbles{position:absolute;left:0;right:0;bottom:0;height:100%;z-index:2;pointer-events:none}
+.bubbles span{
+  position:absolute; bottom:-10vh; border-radius:50%;
+  background:rgba(255,255,255,0.95);
+  opacity:0.16; filter:blur(0.6px);
+  box-shadow:0 0 12px rgba(255,255,255,0.08);
+  animation:bubbleRise linear infinite;
+}
+.bubbles span:nth-child(1){left:6%; width:6px; height:6px; animation-duration:10s; animation-delay:0s}
+.bubbles span:nth-child(2){left:18%; width:10px; height:10px; animation-duration:12s; animation-delay:2s; opacity:0.12}
+.bubbles span:nth-child(3){left:28%; width:8px; height:8px; animation-duration:9s; animation-delay:1s}
+.bubbles span:nth-child(4){left:40%; width:12px; height:12px; animation-duration:11s; animation-delay:3s; opacity:0.14}
+.bubbles span:nth-child(5){left:54%; width:7px; height:7px; animation-duration:13s; animation-delay:0.5s}
+.bubbles span:nth-child(6){left:66%; width:9px; height:9px; animation-duration:10s; animation-delay:2.5s}
+.bubbles span:nth-child(7){left:74%; width:6px; height:6px; animation-duration:14s; animation-delay:1.2s; opacity:0.10}
+.bubbles span:nth-child(8){left:82%; width:11px; height:11px; animation-duration:8s; animation-delay:0.8s}
+.bubbles span:nth-child(9){left:90%; width:7px; height:7px; animation-duration:12s; animation-delay:3.5s; opacity:0.16}
+.bubbles span:nth-child(10){left:96%; width:5px; height:5px; animation-duration:15s; animation-delay:1.8s; opacity:0.08}
+
+@keyframes bubbleRise{
+  0%{transform:translateY(0) scale(0.8); opacity:0}
+  10%{opacity:0.12}
+  50%{transform:translateY(-55vh) scale(1); opacity:0.26}
+  100%{transform:translateY(-110vh) scale(1.2); opacity:0}
+}
+
+#content{
+  width: 1200px;
+  height: 800px;
+  margin: 30px auto;
+  position: relative;
+  overflow: hidden;
+  z-index:3; 
+  border: 6px solid rgba(255,255,255,0.06);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(8,30,50,0.04), rgba(3,10,20,0.06));
+  box-shadow: 0 12px 50px rgba(3,8,18,0.6), inset 0 6px 40px rgba(0,0,0,0.25);
+}
+
+.entity{
+  width: 160px; 
+  height: auto;
+  object-fit: contain;
+  display:block;
+  transform-origin:center;
+  user-select:none;
+  pointer-events: auto;
+  filter: drop-shadow(0 6px 16px rgba(2,8,20,0.6));
+}
+
+#fish .entity{ width:120px }
+#fish1 .entity{ width:96px }
+#fish2 .entity{ width:110px }
+#fish3 .entity{ width:130px }
+#fish4 .entity{ width:100px }
+#fish5 .entity{ width:140px }
+
+@keyframes wiggle { 0%{transform:rotate(-6deg)} 50%{transform:rotate(6deg)} 100%{transform:rotate(-6deg)} }
+.entity{ animation: wiggle 3.6s ease-in-out infinite }
+
+#fish{
+  left: 100px; top: 300px; position: absolute;
+  animation: fish 12s linear infinite;
+}
+@keyframes fish {
+  0% { left: 100px; top: 400px; transform: scaleX(1) }
+  25% { left: 360px; top: 380px; transform: scaleX(1) }
+  50% { left: 700px; top: 260px; transform: scaleX(1) }
+  75% { left: 420px; top: 420px; transform: scaleX(-1) }
+  100%{ left: 140px; top: 380px; transform: scaleX(-1) }
+}
+
+#fish1{
+  left: 1425px; top: 540px; position: absolute;
+  animation: fish1 16s linear infinite;
+}
+@keyframes fish1 {
+  0% { left: 1200px; top: 420px; transform: scaleX(-1) }
+  30% { left: 900px; top: 360px; transform: scaleX(-1) }
+  55% { left: 520px; top: 220px; transform: scaleX(1) }
+  85% { left: 240px; top: 420px; transform: scaleX(1) }
+  100%{ left: 140px; top: 360px; transform: scaleX(1) }
+}
+
+#fish2{
+  left: -234px; top: 640px; position: absolute;
+  animation: fish2 18s linear infinite;
+}
+@keyframes fish2 {
+  0% { left: -200px; top: 560px; transform: scaleX(1) }
+  30% { left: 300px; top: 420px; transform: scaleX(1) }
+  60% { left: 700px; top: 300px; transform: scaleX(-1) }
+  85% { left: 500px; top: 520px; transform: scaleX(-1) }
+  100%{ left: 140px; top: 480px; transform: scaleX(-1) }
+}
+
+#fish3{
+  left: -1345px; top: -700px; position: absolute;
+  animation: fish3 20s linear infinite;
+}
+@keyframes fish3 {
+  0% { left: 1200px; top: -200px; transform: scaleX(-1) }
+  30% { left: 420px; top: 420px; transform: scaleX(-1) }
+  55% { left: 180px; top: 160px; transform: scaleX(1) }
+  80% { left: 540px; top: 400px; transform: scaleX(1) }
+  100%{ left: 140px; top: 340px; transform: scaleX(1) }
+}
+
+#fish4{
+  left: 1346px; top: -260px; position: absolute;
+  animation: fish4 22s linear infinite;
+}
+@keyframes fish4 {
+  0% { left: -80px; top: 220px; transform: scaleX(1) }
+  30% { left: 340px; top: 420px; transform: scaleX(1) }
+  60% { left: 620px; top: 210px; transform: scaleX(-1) }
+  85% { left: 120px; top: 500px; transform: scaleX(-1) }
+  100%{ left: 140px; top: 420px; transform: scaleX(-1) }
+}
+
+#fish5{
+  left: 2310px; top: 1140px; position: absolute;
+  animation: fish5 14s linear infinite;
+}
+@keyframes fish5 {
+  0% { left: -1340px; top: 404px; transform: scaleX(1) }
+  30% { left: 120px; top: 460px; transform: scaleX(1) }
+  55% { left: 520px; top: 370px; transform: scaleX(-1) }
+  85% { left: 520px; top: 470px; transform: scaleX(-1) }
+  100%{ left: 140px; top: 420px; transform: scaleX(-1) }
+}
+
+#diver1{ left: 200px; top: 500px; position:absolute; animation: diver1 18s linear infinite; }
+@keyframes diver1 {
+  0% { left: 100px; top: 400px; transform:scale(0.95) }
+  30% { left: 350px; top: 420px; transform:scale(1) }
+  60% { left: 700px; top: 300px; transform:scale(1) }
+  100%{ left: 420px; top: 500px; transform:scale(0.95) }
+}
+
+#diver2{ left: 300px; top: 400px; position:absolute; animation: diver2 20s linear infinite; }
+@keyframes diver2 {
+  0% { left: 150px; top: 220px; transform:scale(0.95) }
+  35% { left: 420px; top: 420px; transform:scale(1) }
+  70% { left: 760px; top: 340px; transform:scale(1) }
+  100%{ left: 420px; top: 500px; transform:scale(0.95) }
+}
+
+#diver3{ left: 120px; top: 3700px; position:absolute; animation: diver3 22s linear infinite; }
+@keyframes diver3 {
+  0% { left: 160px; top: 130px; transform:scale(0.9) }
+  35% { left: 420px; top: 420px; transform:scale(1) }
+  65% { left: 640px; top: 320px; transform:scale(1) }
+  100%{ left: 820px; top: 720px; transform:scale(0.9) }
+}
+
+#shark{ left: 1467px; top: 1409px; position:absolute; animation: shark 20s linear infinite; }
+@keyframes shark {
+  0% { left: 1400px; top: 1200px; transform: scaleX(-1) }
+  30% { left: 900px; top: 700px; transform: scaleX(-1) }
+  60% { left: 500px; top: 420px; transform: scaleX(1) }
+  100%{ left: 140px; top: 420px; transform: scaleX(1) }
+}
+
+#turtle{ left: 1324px; top: 1879px; position:absolute; animation: turtle 60s linear infinite; }
+@keyframes turtle {
+  0% { left: 1250px; top: 1000px; transform:scale(0.9) }
+  50% { left: 700px; top: 500px; transform:scale(1) }
+  100%{ left: 140px; top: 420px; transform:scale(0.9) }
+}
+
+@media (max-width: 1300px){
+  #content{ width: 1000px; height: 650px; margin: 20px auto; border-radius:14px }
+  .entity{ filter: drop-shadow(0 6px 12px rgba(2,8,20,0.5)) }
+}
+@media (max-width: 980px){
+  #content{ width: 92%; height: 60vh; margin: 20px auto; }
+  .entity{ width: 110px }
+  #fish .entity{ width:90px }
+}
+
+.paused *{ animation-play-state: paused !important; transition:none !important }
+
+@media (prefers-reduced-motion: reduce){
+  .ocean-bg, .bubbles span, .entity, #content * { animation: none !important; transition: none !important }
+}
